@@ -1,0 +1,23 @@
+{
+  "name": "rest-api-storeking-id",
+  "version": "1.0.0",
+  "description": "Assesment Storeking. You can find out more about Storeking at [http://storeking.id](http://storeking.id)",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "author": "M Jundi Robbani <jundi.robbani99@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "mongoose": "^5.2.4",
+    "nodemon": "^1.18.3",
+    "swagger-tools": "0.10.1"
+  }
+}
