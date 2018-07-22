@@ -1,0 +1,491 @@
+swagger: "2.0"
+info:
+  description: "Assesment Storeking. You can find out more about Storeking at [http://storeking.id](http://storeking.id)"
+  version: "1.0.0"
+  title: "Rest API - StoreKing.id"
+  contact:
+    email: "jundi.robbani99@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+tags:
+- name: "dishes"
+  description: "Operations about dishes"
+- name: "promotions"
+  description: "Operations about promotions"
+- name: "leadership"
+  description: "Operations about leadership"
+schemes:
+- "http"
+paths:
+  /dishes:
+    get:
+      tags:
+      - "dishes"
+      summary: "Get a list of  dishes"
+      description: "Returns all dishes"
+      operationId: "getDishes"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successfull operation"
+          schema:
+            $ref: "#/definitions/dishes"
+        400:
+          description: "Invalid Dishes"
+        404:
+          description: "dishes not found"
+      x-swagger-router-controller: "dishRouter"
+    post:
+      tags:
+      - "dishes"
+      summary: "Add a new dishes to the store"
+      description: ""
+      operationId: "addDishes"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "content of dishes"
+        required: true
+        schema:
+          $ref: "#/definitions/dishes"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"                
+      responses:
+        200:
+          description: "Successfull operation"
+          schema:
+            type: array
+            $ref: "#/definitions/dishes"
+        405:
+          description: "Invalid input"
+      x-swagger-router-controller: "dishRouter"
+    delete:
+      tags:
+      - "dishes"
+      summary: "Deletes list of dishes"
+      description: ""
+      operationId: "deleteDishes"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successfull to delete"
+        400:
+          description: "Invalid Id dishes"
+        404:
+          description: "dishes not found"
+      x-swagger-router-controller: "dishRouter"
+  /dishes/{dishes_id}:
+    get:
+      tags:
+      - "dishes"
+      summary: "Find dishes by Id"
+      description: "Returns a single dishes"
+      operationId: "getDishesById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "dishes_id"
+        in: "path"
+        description: "Id of dishes to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/dishes"
+        400:
+          description: "Invalid Id dishes"
+        404:
+          description: "dishes not found"
+      x-swagger-router-controller: "dishRouter"
+    put:
+      tags:
+      - "dishes"
+      summary: "Update an existing dishes"
+      description: ""
+      operationId: "updateDishesById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "dishes_id"
+        in: "path"
+        description: "Id of dishes to return"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "dishes object that needs to be update to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/dishes"
+      responses:
+        400:
+          description: "Invalid dishes"
+        404:
+          description: "dishes not found"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "dishRouter"
+    delete:
+      tags:
+      - "dishes"
+      summary: "Deletes a dishes"
+      description: ""
+      operationId: "deleteDishesById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "dishes_id"
+        in: "path"
+        description: "dishes id to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfull to delete"
+        400:
+          description: "Invalid Id dishes"
+        404:
+          description: "dishes not found"
+      x-swagger-router-controller: "dishRouter"
+  /promotions:
+    get:
+      tags:
+      - "promotions"
+      summary: "Get a list of  promotions"
+      description: "Returns all promotions"
+      operationId: "getPromotions"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successfull operation"
+          schema:
+            $ref: "#/definitions/promotions"
+        400:
+          description: "Invalid promotions"
+        404:
+          description: "promotions not found"
+      x-swagger-router-controller: "promoRouter"
+    post:
+      tags:
+      - "promotions"
+      summary: "Add a new promotions to the store"
+      description: ""
+      operationId: "addPromotions"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "content of promotions"
+        required: true
+        schema:
+          $ref: "#/definitions/promotions"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"                
+      responses:
+        200:
+          description: "Successfull operation"
+          schema:
+            type: array
+            $ref: "#/definitions/promotions"
+        405:
+          description: "Invalid input"
+      x-swagger-router-controller: "promoRouter"
+    delete:
+      tags:
+      - "promotions"
+      summary: "Deletes list of promotions"
+      description: ""
+      operationId: "deletePromotions"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successfull to delete"
+        400:
+          description: "Invalid Id promotions"
+        404:
+          description: "promotions not found"
+      x-swagger-router-controller: "promoRouter"
+  /promotions/{promotions_id}:
+    get:
+      tags:
+      - "promotions"
+      summary: "Find promotions by Id"
+      description: "Returns a single promotions"
+      operationId: "getPromotionsById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "promotions_id"
+        in: "path"
+        description: "Id of promotions to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/promotions"
+        400:
+          description: "Invalid Id promotions"
+        404:
+          description: "promotions not found"
+      x-swagger-router-controller: "promoRouter"
+    put:
+      tags:
+      - "promotions"
+      summary: "Update an existing promotions"
+      description: ""
+      operationId: "updatePromotionsById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "promotions_id"
+        in: "path"
+        description: "Id of promotions to return"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "promotions object that needs to be update to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/promotions"
+      responses:
+        400:
+          description: "Invalid promotions"
+        404:
+          description: "promotions not found"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "promoRouter"
+    delete:
+      tags:
+      - "promotions"
+      summary: "Deletes a promotions"
+      description: ""
+      operationId: "deletePromotionsById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "promotions_id"
+        in: "path"
+        description: "promotions id to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfull to delete"
+        400:
+          description: "Invalid Id promotions"
+        404:
+          description: "promotions not found"
+      x-swagger-router-controller: "promoRouter"      
+  /leadership:
+    get:
+      tags:
+      - "leadership"
+      summary: "Get a list of  leadership"
+      description: "Returns all leadership"
+      operationId: "getLeadership"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successfull operation"
+          schema:
+            $ref: "#/definitions/leadership"
+        400:
+          description: "Invalid leadership"
+        404:
+          description: "leadership not found"
+      x-swagger-router-controller: "leaderRouter"
+    post:
+      tags:
+      - "leadership"
+      summary: "Add a new leadership to the store"
+      description: ""
+      operationId: "addLeadership"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "content of leadership"
+        required: true
+        schema:
+          $ref: "#/definitions/leadership"
+      produces:
+      - "application/json"
+      consumes:
+      - "application/json"                
+      responses:
+        200:
+          description: "Successfull operation"
+          schema:
+            type: array
+            $ref: "#/definitions/leadership"
+        405:
+          description: "Invalid input"
+      x-swagger-router-controller: "leaderRouter"
+    delete:
+      tags:
+      - "leadership"
+      summary: "Deletes list of leadership"
+      description: ""
+      operationId: "deleteLeadership"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Successfull to delete"
+        400:
+          description: "Invalid Id leadership"
+        404:
+          description: "leadership not found"
+      x-swagger-router-controller: "leaderRouter"
+  /leadership/{leadership_id}:
+    get:
+      tags:
+      - "leadership"
+      summary: "Find leadership by Id"
+      description: "Returns a single leadership"
+      operationId: "getLeadershipById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "leadership_id"
+        in: "path"
+        description: "Id of leadership to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/leadership"
+        400:
+          description: "Invalid Id leadership"
+        404:
+          description: "leadership not found"
+      x-swagger-router-controller: "leaderRouter"
+    put:
+      tags:
+      - "leadership"
+      summary: "Update an existing leadership"
+      description: ""
+      operationId: "updateLeadershipById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "leadership_id"
+        in: "path"
+        description: "Id of leadership to return"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "leadership object that needs to be update to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/leadership"
+      responses:
+        400:
+          description: "Invalid leadership"
+        404:
+          description: "leadership not found"
+        405:
+          description: "Validation exception"
+      x-swagger-router-controller: "leaderRouter"
+    delete:
+      tags:
+      - "leadership"
+      summary: "Deletes a leadership"
+      description: ""
+      operationId: "deleteLeadershipById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "leadership_id"
+        in: "path"
+        description: "leadership id to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successfull to delete"
+        400:
+          description: "Invalid Id leadership"
+        404:
+          description: "leadership not found"
+      x-swagger-router-controller: "leaderRouter"      
+definitions:
+  dishes:
+    type: "object"
+    properties:
+      dishes_id:
+        type: "string"
+      dishes_name:
+        type: "string"
+        example: "dishes beauty"
+      created_date:
+        type: "string"
+        format: "date-time"
+      is_active:
+        type: "boolean"
+    example:
+      is_active: true
+      created_date: "2018-07-21T00:30:28Z"
+      dishes_name: "dishes beauty"        
+  promotions:
+    type: "object"
+    properties:
+      promotions_id:
+        type: "string"
+      promotions_name:
+        type: "string"
+      created_date:
+        type: "string"
+        format: "date-time"
+      is_active:
+        type: "boolean"        
+    example:
+      is_active: true
+      created_date: "2018-07-21T00:30:28Z"
+      promotions_name: "new promotions"
+  leadership:
+    type: "object"
+    properties:
+      leadership_id:
+        type: "string"
+      leadership_name:
+        type: "string"
+      created_date:
+        type: "string"
+        format: "date-time"
+      is_active:
+        type: "boolean"        
+    example:
+      is_active: true
+      created_date: "2018-07-21T00:30:28Z"
+      leadership_name: "new leadership"      
